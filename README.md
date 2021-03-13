@@ -39,9 +39,6 @@ normally be set up.
 - Cogs: are a collection of commands, that is made in order to organize the commands once the bot's development increases.
 - Extension: are able to allow bot functionality changes during run-time of the bot. 
 
-## Now Lets Look at The Demo
-- 
-
 ## Uses in Demo
 - on_message: the bot event will 
 - ".hello": the bot command will respond with "world"
@@ -50,7 +47,8 @@ normally be set up.
 - ".reload": the bot command will update the use of the file world.py cog extension
 - ".world": the bot command is from the cog extension and will do whichever task it is changed to.
 
-
+## Now Lets Look at The Demo
+- https://github.com/TakashiJose/TuffyHacks-DiscordBotDemoPublic
 
 ## Resources/Links
 - Discord.py documentation
