@@ -40,7 +40,7 @@ normally be set up.
 - Extension: are able to allow bot functionality changes during run-time of the bot. 
 
 ## Uses in Demo
-- on_message: the bot event will 
+- "on_message": the bot will check messages sent, if a key word is user, the bot will send the message "nice"
 - ".hello": the bot command will respond with "world"
 - ".happy": the bot command will respond with the smiling emoji
 - ".dice": the bot command will generate a random integer determined by what kind of dice you wish to roll
