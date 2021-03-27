@@ -7,7 +7,7 @@ class World(commands.Cog):
 
     @commands.command()
     async def world(self, ctx):
-        await ctx.send('potato')
+        await ctx.send('worship the potato')
 
 def setup(client):
     client.add_cog(World(client))

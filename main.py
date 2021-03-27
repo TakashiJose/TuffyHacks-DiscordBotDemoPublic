@@ -8,7 +8,6 @@ import os
 import json
 
 client = commands.Bot(command_prefix='.')
-client.remove_command('help')
 
 token = open("token.txt")
 TOKEN = token.read()
@@ -21,13 +20,17 @@ async def on_ready():
 #EVENT: when a message is received
 @client.event
 async def on_message(ctx):
-    #checks if sender of the message is the client
+    #checks if sender of the message is the client/bot
     if ctx.author == client.user:
         return
+    #check if its not a command
     if ctx.content.startswith('.') == False:
-        await ctx.channel.send(ctx.content)
-    if ctx.content.find("69") !=-1: 
-        await ctx.channel.send("Nice")
+        #checks if the user sends a message with 'monke' inside it
+        if ctx.content.find("monke") !=-1: 
+            await ctx.channel.send(file=discord.File('monke.jpg'))
+        else:
+            await ctx.channel.send(ctx.content)
+    #allows commands to be read.ima
     await client.process_commands(ctx)
 
 #EVENT: when the prefix is used, but not a proper command is used
@@ -52,13 +55,14 @@ async def happy(ctx):
 
 #COMMAND: dice, will send value found by random generation
 @client.command()
-async def dice(ctx, *,arg):
-    """Roll Dice"""
+async def dice(ctx, arg):
+    """Roll Dice(.dice help to see options"""
     dice_result=0
     if arg == "help":
         await ctx.send(".dice <dicetype>")
         await ctx.send("dicetype: d4, d6, d8, d10, d12, d20")
         return
+    #d4 rol
     if arg == "d4":
         dice_result = random.randint(1,4)
     if arg == "d6":
@@ -74,10 +78,18 @@ async def dice(ctx, *,arg):
     await ctx.send(dice_result)
     return
 
-#COMMAND: find, will send the first image found by keyword or phrase
+#COMMAND: find, will send a capybara image
 @client.command()
-async def find(ctx, *, arg): #not yet implemented
-    print(f'searching by keyword/keyphrase: {arg}')
+async def image(ctx):
+    """Sends an amazing image"""
+    await ctx.send(file=discord.File('capybara.jpg'))
+    return
+
+#COMMAND: boomerang, will repeat the argument if an argument is sent by the user
+@client.command()
+async def boomerang(ctx, *, arg):
+    if arg:
+        await ctx.send(arg)
     return
 
 #COG EXTENSION management
@@ -86,6 +98,7 @@ async def find(ctx, *, arg): #not yet implemented
 async def reload(ctx):
     """Reloads cog: world"""
     client.reload_extension('world')
+
 #loads COG EXTENSION
 client.load_extension('world')
 
