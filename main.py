@@ -28,8 +28,6 @@ async def on_message(ctx):
         #checks if the user sends a message with 'monke' inside it
         if ctx.content.find("monke") !=-1: 
             await ctx.channel.send(file=discord.File('monke.jpg'))
-        else:
-            await ctx.channel.send(ctx.content)
     #allows commands to be read.ima
     await client.process_commands(ctx)
 
@@ -38,6 +36,11 @@ async def on_message(ctx):
 async def on_command_error(ctx, error):
 	if isinstance(error, commands.CommmandNotFound):
 		await ctx.send('Invalid command')
+
+@client.event
+async def on_reaction_add(reaction, user):
+    channel =reaction.message.channel
+    await client.send('hello')
 
 #COMMAND: hello, will respond with 'world' 
 @client.command()
@@ -62,17 +65,22 @@ async def dice(ctx, arg):
         await ctx.send(".dice <dicetype>")
         await ctx.send("dicetype: d4, d6, d8, d10, d12, d20")
         return
-    #d4 rol
+    #d4 roll
     if arg == "d4":
         dice_result = random.randint(1,4)
+    #d6 roll
     if arg == "d6":
         dice_result = random.randint(1,6)
+    #d8 roll
     if arg == "d8":
         dice_result = random.randint(1,8)
+    #d10 roll
     if arg == "d10":
         dice_result = random.randint(1,10)
+    #d12 roll
     if arg == "d12":
         dice_result = random.randint(1,12)
+    #d20 roll
     if arg == "d20":
         dice_result = random.randint(1,20)
     await ctx.send(dice_result)
